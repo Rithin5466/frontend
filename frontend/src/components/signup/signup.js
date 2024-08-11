@@ -17,16 +17,24 @@ export const SignUp = () => {
             return;
         }
 
-        await axios.post("http://localhost:9000/signup", { name,password,email, mobile }) // Update URL to match backend
-            .then((res) => {
-                if (res.data.message === 'Success') {
-                    alert("Registration successful");
-                    window.location.href = "/signin";
-                } else {
-                    alert("Registration failed");
-                }
-            })
-            .catch((e) => console.log(e));
+        const response=await axios.post("http://localhost:9000/signup", { name,password,email, mobile }) // Update URL to match backend
+            // .then((res) => {
+            //     if (res.data.message === 'Success') {
+            //         alert("Registration successful");
+            //         window.location.href = "/signin";
+            //     } else {
+            //         alert("Registration failed");
+            //         console.log(res.data.error);
+            //     }
+            // })
+            // .catch((e) => console.log(e));
+            if(response.data) {
+                alert("Registration successful");
+                window.location.href = "/signin";
+            } else {
+                alert("Registration failed");
+                console.log(response.data.error);
+            }
     };
 
     return (
