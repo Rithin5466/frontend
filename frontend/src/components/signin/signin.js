@@ -9,7 +9,7 @@ export const SignIn = () => {
     const [password, setPassword] = useState("");
 
     const Signin = async () => {
-        await axios.post("http://localhost:9000/signin", { email, password }) // Update URL to match backend
+        await axios.post("http://localhost:9000/signin", { email, password })
             .then((res) => {
                 if (res.data.message === 'login success') {
                     alert("Login successful");
@@ -89,7 +89,7 @@ export const SignIn = () => {
 
                     {/* Forgot Password */}
                     <Text mt={4} textAlign="center">
-                        <Link href="/forgot-password" color="white" _hover={{ color: "pink.200" }}>
+                        <Link to="/forgot-password" color="white" _hover={{ color: "pink.200" }}>
                             Forgot Password?
                         </Link>
                     </Text>

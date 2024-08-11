@@ -17,7 +17,7 @@ export const SignUp = () => {
             return;
         }
 
-        await axios.post("http://localhost:9000/signup", { name, email, mobile, password }) // Update URL to match backend
+        await axios.post("http://localhost:9000/signup", { name,password,email, mobile }) // Update URL to match backend
             .then((res) => {
                 if (res.data.message === 'Success') {
                     alert("Registration successful");
@@ -58,7 +58,7 @@ export const SignUp = () => {
                                 borderRadius="full"
                                 _placeholder={{ color: 'gray.400' }}
                                 focusBorderColor="pink.400"
-                                onChange={(e => setName(e.target.value))} 
+                                onChange={(e) => setName(e.target.value)} 
                             />
                         </InputGroup>
                     </FormControl>
@@ -75,7 +75,7 @@ export const SignUp = () => {
                                 borderRadius="full"
                                 _placeholder={{ color: 'gray.400' }}
                                 focusBorderColor="pink.400"
-                                onChange={(e => setEmail(e.target.value))} 
+                                onChange={(e) => setEmail(e.target.value)} 
                             />
                         </InputGroup>
                     </FormControl>
@@ -92,7 +92,7 @@ export const SignUp = () => {
                                 borderRadius="full"
                                 _placeholder={{ color: 'gray.400' }}
                                 focusBorderColor="pink.400"
-                                onChange={(e => setMobile(e.target.value))} 
+                                onChange={(e) => setMobile(e.target.value)} 
                             />
                         </InputGroup>
                     </FormControl>
@@ -109,7 +109,7 @@ export const SignUp = () => {
                                 borderRadius="full"
                                 _placeholder={{ color: 'gray.400' }}
                                 focusBorderColor="pink.400"
-                                onChange={(e => setPassword(e.target.value))} 
+                                onChange={(e )=> setPassword(e.target.value)} 
                             />
                         </InputGroup>
                     </FormControl>
@@ -126,7 +126,7 @@ export const SignUp = () => {
                                 borderRadius="full"
                                 _placeholder={{ color: 'gray.400' }}
                                 focusBorderColor="pink.400"
-                                onChange={(e => setConfirmPassword(e.target.value))} 
+                                onChange={(e )=> setConfirmPassword(e.target.value)} 
                             />
                         </InputGroup>
                     </FormControl>
