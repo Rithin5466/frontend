@@ -8,9 +8,11 @@ import {
     Text,
     InputGroup,
     InputRightElement,
+    IconButton
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { FaLock, FaEnvelope, FaMobileAlt, FaKey } from "react-icons/fa";
+import { FaLock, FaEnvelope, FaMobileAlt, FaKey, FaArrowLeft } from "react-icons/fa";
+import { Link as RouterLink } from 'react-router-dom';
 
 export const ForgotPassword = () => {
     const [email, setEmail] = useState("");
@@ -21,7 +23,6 @@ export const ForgotPassword = () => {
     const [otpVerified, setOtpVerified] = useState(false);
 
     const handleVerifyOtp = () => {
-        // Replace with actual OTP verification logic
         if (otp === "1234") {
             setOtpVerified(true);
             alert("OTP Verified! You can now enter your new password.");
@@ -35,93 +36,85 @@ export const ForgotPassword = () => {
             alert("Passwords do not match");
             return;
         }
-
-        // Replace with actual password reset logic
         alert("Password reset successful");
     };
 
     return (
-        <Box
-            w="100%"
-            maxW="400px"
-            mx="auto"
-            mt="100px"
-            p="8"
-            borderRadius="xl"
-            boxShadow="2xl"
-            bgGradient="linear(to-r, purple.500, pink.500)"
-            color="white"
-            _hover={{ transform: "scale(1.05)", transition: "transform 0.3s ease-in-out" }}
+        <Box 
+            height="100vh" 
+            display="flex" 
+            justifyContent="center" 
+            alignItems="center" 
+            bg="gray.100"
         >
-            <VStack spacing={6} align="flex-start">
-                <Text fontSize="3xl" fontWeight="extrabold" alignSelf="center" letterSpacing="wide">
-                    Forgot Password
-                </Text>
-                <Text fontSize="lg" alignSelf="center" opacity="0.8">
-                    Please enter your details to reset your password
-                </Text>
+            <Box 
+                width="360px" 
+                boxShadow="md" 
+                p={8} 
+                borderRadius="lg" 
+                bg="white"
+            >
+                <IconButton 
+                    aria-label="Go back" 
+                    icon={<FaArrowLeft />} 
+                    as={RouterLink} 
+                    to="/signin" 
+                    mb={4} 
+                    colorScheme="gray"
+                />
+                <VStack spacing={4} align="stretch">
+                    <Text fontSize="2xl" fontWeight="bold" textAlign="center" color="gray.800">
+                        Forgot Password
+                    </Text>
+                    <Text fontSize="sm" textAlign="center" color="gray.500">
+                        Please enter your details to reset your password
+                    </Text>
 
-                <form style={{ width: "100%" }}>
-                    <FormControl>
+                    <FormControl id="email">
                         <FormLabel>Email address</FormLabel>
                         <InputGroup>
-                            <InputRightElement pointerEvents="none" children={<FaEnvelope color="gray.500" />} />
-                            <Input
-                                type="email"
-                                placeholder="Enter your email"
-                                bg="white"
-                                color="black"
-                                borderRadius="full"
-                                _placeholder={{ color: "gray.400" }}
-                                focusBorderColor="pink.400"
-                                onChange={(e) => setEmail(e.target.value)}
+                            <InputRightElement children={<FaEnvelope color="gray.500" />} />
+                            <Input 
+                                type="email" 
+                                placeholder="Enter your email" 
+                                focusBorderColor="black"
+                                onChange={(e) => setEmail(e.target.value)} 
                             />
                         </InputGroup>
                     </FormControl>
 
-                    <FormControl mt={4}>
+                    <FormControl id="mobile">
                         <FormLabel>Mobile Number</FormLabel>
                         <InputGroup>
-                            <InputRightElement pointerEvents="none" children={<FaMobileAlt color="gray.500" />} />
-                            <Input
-                                type="tel"
-                                placeholder="Enter your mobile number"
-                                bg="white"
-                                color="black"
-                                borderRadius="full"
-                                _placeholder={{ color: "gray.400" }}
-                                focusBorderColor="pink.400"
-                                onChange={(e) => setMobile(e.target.value)}
+                            <InputRightElement children={<FaMobileAlt color="gray.500" />} />
+                            <Input 
+                                type="tel" 
+                                placeholder="Enter your mobile number" 
+                                focusBorderColor="black"
+                                onChange={(e) => setMobile(e.target.value)} 
                             />
                         </InputGroup>
                     </FormControl>
 
-                    <FormControl mt={4}>
+                    <FormControl id="otp">
                         <FormLabel>OTP</FormLabel>
                         <InputGroup>
-                            <InputRightElement pointerEvents="none" children={<FaKey color="gray.500" />} />
-                            <Input
-                                type="text"
-                                placeholder="Enter the OTP sent to your mobile"
-                                bg="white"
-                                color="black"
-                                borderRadius="full"
-                                _placeholder={{ color: "gray.400" }}
-                                focusBorderColor="pink.400"
-                                onChange={(e) => setOtp(e.target.value)}
+                            <InputRightElement children={<FaKey color="gray.500" />} />
+                            <Input 
+                                type="text" 
+                                placeholder="Enter the OTP sent to your mobile" 
+                                focusBorderColor="black"
+                                onChange={(e) => setOtp(e.target.value)} 
                             />
                         </InputGroup>
                     </FormControl>
 
-                    <Button
-                        mt={4}
-                        colorScheme="pink"
-                        type="button"
-                        w="full"
-                        borderRadius="full"
-                        size="lg"
-                        boxShadow="xl"
-                        _hover={{ bg: "pink.600", boxShadow: "2xl" }}
+                    <Button 
+                        bg="black" 
+                        color="white" 
+                        size="lg" 
+                        mt={4} 
+                        _hover={{ bg: "gray.800" }}
                         onClick={handleVerifyOtp}
                     >
                         Verify OTP
@@ -129,57 +122,46 @@ export const ForgotPassword = () => {
 
                     {otpVerified && (
                         <>
-                            <FormControl mt={4}>
+                            <FormControl id="new-password" mt={4}>
                                 <FormLabel>New Password</FormLabel>
                                 <InputGroup>
-                                    <InputRightElement pointerEvents="none" children={<FaLock color="gray.500" />} />
-                                    <Input
-                                        type="password"
-                                        placeholder="Create a new password"
-                                        bg="white"
-                                        color="black"
-                                        borderRadius="full"
-                                        _placeholder={{ color: "gray.400" }}
-                                        focusBorderColor="pink.400"
-                                        onChange={(e) => setNewPassword(e.target.value)}
+                                    <InputRightElement children={<FaLock color="gray.500" />} />
+                                    <Input 
+                                        type="password" 
+                                        placeholder="Create a new password" 
+                                        focusBorderColor="black"
+                                        onChange={(e) => setNewPassword(e.target.value)} 
                                     />
                                 </InputGroup>
                             </FormControl>
 
-                            <FormControl mt={4}>
+                            <FormControl id="confirm-new-password" mt={4}>
                                 <FormLabel>Confirm New Password</FormLabel>
                                 <InputGroup>
-                                    <InputRightElement pointerEvents="none" children={<FaLock color="gray.500" />} />
-                                    <Input
-                                        type="password"
-                                        placeholder="Confirm your new password"
-                                        bg="white"
-                                        color="black"
-                                        borderRadius="full"
-                                        _placeholder={{ color: "gray.400" }}
-                                        focusBorderColor="pink.400"
-                                        onChange={(e) => setConfirmPassword(e.target.value)}
+                                    <InputRightElement children={<FaLock color="gray.500" />} />
+                                    <Input 
+                                        type="password" 
+                                        placeholder="Confirm your new password" 
+                                        focusBorderColor="black"
+                                        onChange={(e) => setConfirmPassword(e.target.value)} 
                                     />
                                 </InputGroup>
                             </FormControl>
 
-                            <Button
-                                mt={8}
-                                colorScheme="pink"
-                                type="button"
-                                w="full"
-                                borderRadius="full"
-                                size="lg"
-                                boxShadow="xl"
-                                _hover={{ bg: "pink.600", boxShadow: "2xl" }}
+                            <Button 
+                                bg="black" 
+                                color="white" 
+                                size="lg" 
+                                mt={4} 
+                                _hover={{ bg: "gray.800" }}
                                 onClick={handleResetPassword}
                             >
                                 Reset Password
                             </Button>
                         </>
                     )}
-                </form>
-            </VStack>
+                </VStack>
+            </Box>
         </Box>
     );
 };

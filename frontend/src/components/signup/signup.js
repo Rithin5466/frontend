@@ -1,7 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import { useState } from "react";
-import { FormLabel, FormControl, Input, Button, Box, VStack, Text, InputGroup, InputRightElement } from "@chakra-ui/react";
-import { FaUser, FaEnvelope, FaLock, FaMobileAlt } from "react-icons/fa";
+import { 
+    FormLabel, 
+    FormControl, 
+    Input, 
+    Button, 
+    Box, 
+    VStack, 
+    Text, 
+    InputGroup, 
+    InputRightElement, 
+    IconButton 
+} from "@chakra-ui/react";
+import { FaUser, FaEnvelope, FaLock, FaMobileAlt, FaArrowLeft } from "react-icons/fa";
 import axios from 'axios';
 
 export const SignUp = () => {
@@ -17,147 +28,128 @@ export const SignUp = () => {
             return;
         }
 
-        const response=await axios.post("http://localhost:9000/signup", { name,password,email, mobile }) // Update URL to match backend
-            // .then((res) => {
-            //     if (res.data.message === 'Success') {
-            //         alert("Registration successful");
-            //         window.location.href = "/signin";
-            //     } else {
-            //         alert("Registration failed");
-            //         console.log(res.data.error);
-            //     }
-            // })
-            // .catch((e) => console.log(e));
-            if(response.data) {
-                alert("Registration successful");
-                window.location.href = "/signin";
-            } else {
-                alert("Registration failed");
-                console.log(response.data.error);
-            }
+        const response = await axios.post("http://localhost:9000/signup", { name, password, email, mobile });
+        if (response.data) {
+            alert("Registration successful");
+            window.location.href = "/signin";
+        } else {
+            alert("Registration failed");
+            console.log(response.data.error);
+        }
     };
 
     return (
-        <Box
-            w="100%"
-            maxW="400px"
-            mx="auto"
-            mt="100px"
-            p="8"
-            borderRadius="xl"
-            boxShadow="2xl"
-            bgGradient="linear(to-r, purple.500, pink.500)"
-            color="white"
-            _hover={{ transform: "scale(1.05)", transition: "transform 0.3s ease-in-out" }}
+        <Box 
+            height="100vh" 
+            display="flex" 
+            justifyContent="center" 
+            alignItems="center" 
+            bg="gray.100"
         >
-            <VStack spacing={6} align="flex-start">
-                <Text fontSize="3xl" fontWeight="extrabold" alignSelf="center" letterSpacing="wide">Create an Account</Text>
+            <Box 
+                width="360px"
+                boxShadow="md"
+                p={8}
+                borderRadius="lg"
+                bg="white"
+            >
+                <IconButton 
+                    aria-label="Go back" 
+                    icon={<FaArrowLeft />} 
+                    as={RouterLink} 
+                    to="/signin" 
+                    mb={4} 
+                    colorScheme="gray"
+                />
+                <VStack spacing={4} align="stretch">
+                    <Text fontSize="2xl" fontWeight="bold" textAlign="center" color="gray.800">
+                        Create an Account
+                    </Text>
 
-                <form style={{ width: "100%" }}>
-                    <FormControl>
+                    <FormControl id="name">
                         <FormLabel>Name</FormLabel>
                         <InputGroup>
-                            <InputRightElement pointerEvents="none" children={<FaUser color="gray.500" />} />
+                            <InputRightElement children={<FaUser color="gray.500" />} />
                             <Input 
-                                type='text' 
+                                type="text" 
                                 placeholder="Enter your name" 
-                                bg="white" 
-                                color="black" 
-                                borderRadius="full"
-                                _placeholder={{ color: 'gray.400' }}
-                                focusBorderColor="pink.400"
+                                focusBorderColor="black"
                                 onChange={(e) => setName(e.target.value)} 
                             />
                         </InputGroup>
                     </FormControl>
 
-                    <FormControl mt={4}>
+                    <FormControl id="email">
                         <FormLabel>Email address</FormLabel>
                         <InputGroup>
-                            <InputRightElement pointerEvents="none" children={<FaEnvelope color="gray.500" />} />
+                            <InputRightElement children={<FaEnvelope color="gray.500" />} />
                             <Input 
-                                type='email' 
+                                type="email" 
                                 placeholder="Enter your email" 
-                                bg="white" 
-                                color="black" 
-                                borderRadius="full"
-                                _placeholder={{ color: 'gray.400' }}
-                                focusBorderColor="pink.400"
+                                focusBorderColor="black"
                                 onChange={(e) => setEmail(e.target.value)} 
                             />
                         </InputGroup>
                     </FormControl>
 
-                    <FormControl mt={4}>
+                    <FormControl id="mobile">
                         <FormLabel>Mobile Number</FormLabel>
                         <InputGroup>
-                            <InputRightElement pointerEvents="none" children={<FaMobileAlt color="gray.500" />} />
+                            <InputRightElement children={<FaMobileAlt color="gray.500" />} />
                             <Input 
-                                type='tel' 
+                                type="tel" 
                                 placeholder="Enter your mobile number" 
-                                bg="white" 
-                                color="black" 
-                                borderRadius="full"
-                                _placeholder={{ color: 'gray.400' }}
-                                focusBorderColor="pink.400"
+                                focusBorderColor="black"
                                 onChange={(e) => setMobile(e.target.value)} 
                             />
                         </InputGroup>
                     </FormControl>
 
-                    <FormControl mt={4}>
+                    <FormControl id="password">
                         <FormLabel>Password</FormLabel>
                         <InputGroup>
-                            <InputRightElement pointerEvents="none" children={<FaLock color="gray.500" />} />
+                            <InputRightElement children={<FaLock color="gray.500" />} />
                             <Input 
-                                type='password' 
+                                type="password" 
                                 placeholder="Enter your password" 
-                                bg="white" 
-                                color="black" 
-                                borderRadius="full"
-                                _placeholder={{ color: 'gray.400' }}
-                                focusBorderColor="pink.400"
-                                onChange={(e )=> setPassword(e.target.value)} 
+                                focusBorderColor="black"
+                                onChange={(e) => setPassword(e.target.value)} 
                             />
                         </InputGroup>
                     </FormControl>
 
-                    <FormControl mt={4}>
+                    <FormControl id="confirm-password">
                         <FormLabel>Confirm Password</FormLabel>
                         <InputGroup>
-                            <InputRightElement pointerEvents="none" children={<FaLock color="gray.500" />} />
+                            <InputRightElement children={<FaLock color="gray.500" />} />
                             <Input 
-                                type='password' 
+                                type="password" 
                                 placeholder="Confirm your password" 
-                                bg="white" 
-                                color="black" 
-                                borderRadius="full"
-                                _placeholder={{ color: 'gray.400' }}
-                                focusBorderColor="pink.400"
-                                onChange={(e )=> setConfirmPassword(e.target.value)} 
+                                focusBorderColor="black"
+                                onChange={(e) => setConfirmPassword(e.target.value)} 
                             />
                         </InputGroup>
                     </FormControl>
 
-                    <Button
-                        mt={8}
-                        colorScheme="pink"
-                        type="button" 
-                        w="full"
-                        borderRadius="full"
-                        size="lg"
-                        boxShadow="xl"
-                        _hover={{ bg: "pink.600", boxShadow: "2xl" }}
+                    <Button 
+                        bg="black" 
+                        color="white" 
+                        size="lg" 
+                        mt={4} 
+                        _hover={{ bg: "gray.800" }}
                         onClick={handleSignUp}
                     >
                         Sign Up
                     </Button>
-                </form>
 
-                <Text alignSelf="center" mt={4}>
-                    Already have an account? <Link color="pink.200" to="/signin">Sign In</Link>
-                </Text>
-            </VStack>
+                    <Text textAlign="center" color="gray.600" fontSize="sm" mt={2}>
+                        Already have an account?{" "}
+                        <RouterLink to="/signin" color="black" fontWeight="bold">
+                            Sign In
+                        </RouterLink>
+                    </Text>
+                </VStack>
+            </Box>
         </Box>
     );
 };
