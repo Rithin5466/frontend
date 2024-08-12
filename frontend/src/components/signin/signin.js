@@ -1,3 +1,4 @@
+import React, { useState, useRef } from "react"; // Import React and hooks
 import { 
     Card, 
     CardBody, 
@@ -11,34 +12,35 @@ import {
     Text,
     Checkbox,
     Link
-} from "@chakra-ui/react";
-import axios from 'axios';
-import { api } from "../actions/api";
-import { useState, useRef } from "react";
-import { Link as RouterLink } from 'react-router-dom'; // For navigation
+} from "@chakra-ui/react"; // Import Chakra UI components
+import axios from 'axios'; // Import Axios for API calls
+import { Link as RouterLink } from 'react-router-dom'; // Import RouterLink for navigation
 
 export const SignIn = () => {
-    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const passwordRef = useRef(null); // Ref for password field
+    const passwordRef = useRef(null);
 
     const Signin = async () => {
-        await axios.post(api + "/signin", { name, password })
-        .then((res) => {
+        try {
+            const res = await axios.post("http://localhost:9000/signin", { email, password });
             if (res.data.message) {
-                console.log(res?.data?.values);
                 alert(res.data.message);
+                console.log(res.data.values);
+                // Redirect or perform actions upon successful login
+                window.location.href = "/dashboard"; // Replace with your desired route
             } else {
                 alert(res.data.error);
-                window.location.href = "/signup";
             }
-        })
-        .catch((e) => console.log(e));
+        } catch (e) {
+            console.error(e);
+            alert("Login failed. Please try again.");
+        }
     };
 
     const handleEmailKeyPress = (e) => {
         if (e.key === "Enter") {
-            passwordRef.current.focus(); // Move focus to the password field
+            passwordRef.current.focus();
         }
     };
 
@@ -48,10 +50,10 @@ export const SignIn = () => {
             display="flex" 
             justifyContent="center" 
             alignItems="center" 
-            bg="gray.100" // Light gray background
+            bg="gray.100"
         >
             <Card 
-                width="360px" // Adjusted width to match the design
+                width="360px"
                 boxShadow="md" 
                 p={8} 
                 borderRadius="lg"
@@ -63,8 +65,8 @@ export const SignIn = () => {
                             as="h2" 
                             size="lg" 
                             textAlign="center" 
-                            color="gray.800" // Dark gray color for heading
-                            fontFamily="serif" // Serif font family
+                            color="gray.800" 
+                            fontFamily="serif"
                         >
                             Welcome back to Soul Flex!
                         </Heading>
@@ -73,16 +75,16 @@ export const SignIn = () => {
                             textAlign="center" 
                             color="gray.500"
                         >
-                            The faster you fill up, the faster you get a chance to chane your life!
+                            The faster you fill up, the faster you get a chance to change your life!
                         </Text>
 
                         <FormControl id="email">
                             <FormLabel>Email</FormLabel>
                             <Input 
                                 type="email" 
-                                placeholder="Enter your email" // Placeholder as in the image
-                                focusBorderColor="black" // Black focus border color
-                                onChange={(e) => setName(e.target.value)} 
+                                placeholder="Enter your email"
+                                focusBorderColor="black"
+                                onChange={(e) => setEmail(e.target.value)} 
                                 onKeyPress={handleEmailKeyPress} 
                             />
                         </FormControl>
@@ -91,7 +93,7 @@ export const SignIn = () => {
                             <FormLabel>Password</FormLabel>
                             <Input 
                                 type="password" 
-                                placeholder="Enter your password" // Placeholder as in the image
+                                placeholder="Enter your password"
                                 focusBorderColor="black" 
                                 onChange={(e) => setPassword(e.target.value)} 
                                 ref={passwordRef} 
@@ -116,7 +118,7 @@ export const SignIn = () => {
                             color="white" 
                             size="lg" 
                             mt={4} 
-                            _hover={{ bg: "gray.800" }}  // Change background color on hover if needed
+                            _hover={{ bg: "gray.800" }}  
                             onClick={Signin}
                         >
                             Sign In
@@ -128,7 +130,7 @@ export const SignIn = () => {
                             size="md" 
                             width="100%" 
                             mt={2} 
-                            leftIcon={<img src="https://img.icons8.com/color/16/000000/google-logo.png" alt="Google logo" />} // Google logo
+                            leftIcon={<img src="https://img.icons8.com/color/16/000000/google-logo.png" alt="Google logo" />} 
                         >
                             Sign In with Google
                         </Button>

@@ -13,6 +13,9 @@ import {
 import { useState } from "react";
 import { FaLock, FaEnvelope, FaMobileAlt, FaKey, FaArrowLeft } from "react-icons/fa";
 import { Link as RouterLink } from 'react-router-dom';
+import axios from "axios";
+
+const api = "http://localhost:9000"; // Adjust this according to your backend server URL
 
 export const ForgotPassword = () => {
     const [email, setEmail] = useState("");
@@ -23,6 +26,7 @@ export const ForgotPassword = () => {
     const [otpVerified, setOtpVerified] = useState(false);
 
     const handleVerifyOtp = () => {
+        // Simulated OTP verification
         if (otp === "1234") {
             setOtpVerified(true);
             alert("OTP Verified! You can now enter your new password.");
@@ -31,12 +35,24 @@ export const ForgotPassword = () => {
         }
     };
 
-    const handleResetPassword = () => {
+    const handleResetPassword = async () => {
         if (newPassword !== confirmPassword) {
             alert("Passwords do not match");
             return;
         }
-        alert("Password reset successful");
+    
+        try {
+            const response = await axios.post(`${api}/reset-password`, { email, newPassword });
+            
+            if (response.status === 200) {
+                alert(response.data.message || "Password updated successfully");
+            } else {
+                alert("Failed to reset password. Please try again.");
+            }
+        } catch (error) {
+            console.error("Error resetting password:", error);
+            alert("An error occurred while resetting your password. Please try again later.");
+        }
     };
 
     return (

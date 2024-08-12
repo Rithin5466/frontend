@@ -28,13 +28,18 @@ export const SignUp = () => {
             return;
         }
 
-        const response = await axios.post("http://localhost:9000/signup", { name, password, email, mobile });
-        if (response.data) {
+        try {
+            const response = await axios.post("http://localhost:9000/signup", { name, password, email, mobile });
             alert("Registration successful");
             window.location.href = "/signin";
-        } else {
-            alert("Registration failed");
-            console.log(response.data.error);
+        } catch (error) {
+            if (error.response && error.response.status === 409) {
+                // Show appropriate error message based on server response
+                alert(error.response.data.error);
+            } else {
+                alert("Registration failed");
+                console.error(error.response.data.error);
+            }
         }
     };
 
