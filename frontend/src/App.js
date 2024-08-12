@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ForgotPassword } from './components/updatePassword/forgetpass';
 import DisplayData from './components/dispalydata/data';
 import  { MainPage } from './components/landing pages/navbar'; // Ensure this path is correct
+import LandingPage from './components/landing pages/landingpage';
 
 
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/data" element={<DisplayData/>} />
         {/* <Route path="/landingpage1" element={<Navbar/>} /> */}
         <Route path="/mainpage" element={<MainPage/>} />
+        <Route path="/landing" element={<LandingPage/>} />
       </Routes>
     </BrowserRouter>
   );
