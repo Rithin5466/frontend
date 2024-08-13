@@ -38,19 +38,32 @@ export const SignIn = () => {
     const textColor = useColorModeValue("gray.800", "white");
     const secondaryTextColor = useColorModeValue("gray.500", "gray.300");
     const signUpLinkColor = useColorModeValue("black", "white"); // Color for "Sign up" link
-
     const Signin = async () => {
-        await axios.post(api + "/signin", { name, password })
-            .then((res) => {
-                if (res.data.message) {
-                    alert(res.data.message);
-                } else {
-                    alert(res.data.error);
-                    navigate("/signup");
-                }
-            })
-            .catch((e) => console.log(e));
+        try {
+            console.log("Sending sign-in request with", { email: name, password });
+            const res = await axios.post(api + "/signin", { email: name, password });
+            console.log("Response from server:", res.data); // Inspect the response
+        
+            if (res.data.message === "Login successful") {
+                alert(res.data.message); // "Login successful"
+                navigate("/mainpage");   // Redirect to MainPage
+            } else {
+                console.log(res.data); //
+                alert("An unexpected error occurred.");
+            }
+        } catch (error) {
+            console.error("Error during sign-in:", error.response ? error.response.data : error.message);
+            if (error.response && error.response.status === 401) {
+                alert(error.response.data.error); // "Password does not match" or "User does not exist"
+            } else {
+                alert("An unexpected error occurred.");
+            }
+        }
     };
+    
+    
+    
+    
 
     const handleEmailKeyPress = (e) => {
         if (e.key === "Enter") {
@@ -191,11 +204,13 @@ export const SignIn = () => {
                                     onClick={Signin}
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
-                                >
+                                > <Link as={RouterLink} to="/mainpage" color={secondaryTextColor}>
+                            
+                            </Link>
                                     Sign In
                                 </MotionButton>
 
-                                {/* <MotionButton 
+                                <MotionButton 
                                     variant="outline" 
                                     colorScheme="gray" 
                                     size="md" 
@@ -206,7 +221,7 @@ export const SignIn = () => {
                                     whileTap={{ scale: 0.95 }}
                                 >
                                     Sign In with Google
-                                </MotionButton> */}
+                                </MotionButton>
 
                                 <Text textAlign="center" color={secondaryTextColor} fontSize="sm" mt={2}>
                                     Don't have an account?{" "}

@@ -149,7 +149,7 @@ export const ForgotPassword = () => {
                                 />
                             </InputGroup>
                         </FormControl>
-                        <Box mt={7}>
+
                         <Button
                             bg={colorMode === "dark" ? "gray.600" : "gray.700"}
                             color={colorMode === "dark" ? "whiteAlpha.900" : "white"}
@@ -162,7 +162,6 @@ export const ForgotPassword = () => {
                         >
                             Send OTP
                         </Button>
-                        </Box>
                     </Flex>
 
                     <Flex direction="row" align="center" spacing={4}>
@@ -182,7 +181,7 @@ export const ForgotPassword = () => {
                                 />
                             </InputGroup>
                         </FormControl>
-                        <Box mt={7}>
+
                         <Button
                             bg={colorMode === "dark" ? "gray.600" : "gray.700"}
                             color={colorMode === "dark" ? "whiteAlpha.900" : "white"}
@@ -195,7 +194,6 @@ export const ForgotPassword = () => {
                         >
                             Verify OTP
                         </Button>
-                        </Box>
                     </Flex>
 
                     <Collapse in={otpVerified}>

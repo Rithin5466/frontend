@@ -146,115 +146,190 @@ export const MainPage = () => {
       ))}
 
       {/* Header Section */}
-      <MotionBox
-        position="fixed"
-        top={0}
-        left={0}
-        right={0}
-        bg={colorMode === "light" ? "black" : "gray.800"}
-        color="white"
-        p={4}
-        boxShadow="lg"
-        zIndex={999}
-        initial={{ y: -60 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 1 }}
+      {/* Header Section */}
+{/* Header Section */}
+<MotionBox
+  position="fixed"
+  top={0}
+  left={0}
+  right={0}
+  bg={colorMode === "light" ? "black" : "gray.800"}
+  color="white"
+  p={4}
+  boxShadow="lg"
+  zIndex={999}
+  initial={{ y: -60 }}
+  animate={{ y: 0 }}
+  transition={{ duration: 1 }}
+>
+  <Flex width="100%" justifyContent="space-between" alignItems="center">
+    <Heading as="h3" size="md" fontFamily="serif">
+      Hello User..!Glad you find us 😊
+    </Heading>
+    <HStack spacing={8} alignItems="center">
+      <Link
+        fontSize="lg"
+        fontWeight="bold"
+        color={currentPage === "/" ? "teal.500" : "white"}
+        _hover={{ color: "teal.300" }}
+        _activeLink={activeLinkStyles}
+        onClick={() => window.location.reload()} // Refresh the page on click
       >
-        <Flex width="100%" justifyContent="space-between" alignItems="center">
-          <Heading as="h3" size="md" fontFamily="serif">
-            Hello User..!Glad you find us 😊
-          </Heading>
-          <HStack spacing={8} alignItems="center">
-            <Link
-            
-              fontSize="lg"
-              fontWeight="bold"
-              color={currentPage === "/" ? "teal.500" : "white"}
-              _hover={{ color: "teal.300" }}
-              _activeLink={activeLinkStyles}
-            >
-              Home
-            </Link>
-            <Link
-              onClick={handleScrollToFeatures}
-              fontSize="lg"
-              fontWeight="bold"
-              color={location.pathname === "/features" ? "teal.500" : "white"}
-              _hover={{ color: "teal.300" }}
-              _activeLink={activeLinkStyles}
-            >
-              Features
-            </Link>
-            <Link
-              onClick={handleScrollToAboutUs}
-              fontSize="lg"
-              fontWeight="bold"
-              color={location.pathname === "/about-us" ? "teal.500" : "white"}
-              _hover={{ color: "teal.300" }}
-            >
-              About Us
-            </Link>
-            <IconButton
-              icon={colorMode === "light" ? <FaMoon /> : <FaSun />}
-              isRound
-              size="md"
-              onClick={toggleColorMode}
-              aria-label="Toggle Dark Mode"
-              bg={colorMode === "light" ? "gray.200" : "gray.700"} // Background color for better contrast
-              color={colorMode === "light" ? "black" : "white.300"} // Icon color to ensure visibility
-              _hover={{
-                bg: colorMode === "light" ? "gray.300" : "gray.600", // Slightly darker on hover
-              }}
-              _active={{
-                bg: colorMode === "light" ? "gray.400" : "gray.100", // Slightly darker when active
-              }}
-            />
-            <Menu>
-              <MenuButton
-                as={IconButton}
-                icon={<FaUser />}
-                isRound
-                size="md"
-                color={colorMode === "dark" ? "black.500" : "blackAlpha.900"}
-                aria-label="Profile"
-                onClick={handleMenuToggle}
-              />
-              <MenuList
-                bg={colorMode === "light" ? "white" : "gray.700"}
-                color={colorMode === "light" ? "gray.800" : "white"}
-                border="none"
-              >
-                <Flex alignItems="center" p={4}>
-                  <FaUser size={24} />
-                  <Text ml={3} fontWeight="bold">
-                    Username
-                  </Text>
-                </Flex>
+        Home
+      </Link>
+      <Link
+        onClick={handleScrollToFeatures}
+        fontSize="lg"
+        fontWeight="bold"
+        color={location.pathname === "/features" ? "teal.500" : "white"}
+        _hover={{ color: "teal.300" }}
+        _activeLink={activeLinkStyles}
+      >
+        Features
+      </Link>
+      <Link
+        onClick={handleScrollToAboutUs}
+        fontSize="lg"
+        fontWeight="bold"
+        color={location.pathname === "/about-us" ? "teal.500" : "white"}
+        _hover={{ color: "teal.300" }}
+      >
+        About Us
+      </Link>
+      <IconButton
+        icon={colorMode === "light" ? <FaMoon /> : <FaSun />}
+        isRound
+        size="md"
+        onClick={toggleColorMode}
+        aria-label="Toggle Dark Mode"
+        bg={colorMode === "light" ? "gray.200" : "gray.700"} // Background color for better contrast
+        color={colorMode === "light" ? "black" : "white.300"} // Icon color to ensure visibility
+        _hover={{
+          bg: colorMode === "light" ? "gray.300" : "gray.600", // Slightly darker on hover
+        }}
+        _active={{
+          bg: colorMode === "light" ? "gray.400" : "gray.100", // Slightly darker when active
+        }}
+      />
+      <Menu>
+        <MenuButton
+          as={IconButton}
+          icon={<FaUser />}
+          isRound
+          size="md"
+          color={colorMode === "dark" ? "black.500" : "blackAlpha.900"}
+          aria-label="Profile"
+          onClick={handleMenuToggle}
+        />
+        <MenuList
+          bg={colorMode === "light" ? "white" : "gray.700"}
+          color={colorMode === "light" ? "gray.800" : "white"}
+          border="none"
+        >
+          <Flex alignItems="center" p={4}>
+            <FaUser size={24} />
+            <Text ml={3} fontWeight="bold">
+              Username
+            </Text>
+          </Flex>
 
-                <MenuItem
-                  _hover={{ bg: "gray.300" }} // Change bg color on hover
-                  bg={colorMode === "light" ? "white" : "gray.700"} // Ensure default bg is white or dark based on color mode
-                >
-                  <Flex alignItems="center">
-                    <FaFire size={20} />
-                    <Box ml={2}>
-                      <Text fontWeight="bold">Streak</Text>
-                      <Text fontSize="sm">0</Text>
-                    </Box>
-                  </Flex>
-                </MenuItem>
+          <MenuItem
+            _hover={{ bg: "gray.300" }} // Change bg color on hover
+            bg={colorMode === "light" ? "white" : "gray.700"} // Ensure default bg is white or dark based on color mode
+          >
+            <Flex alignItems="center">
+              <FaFire size={20} />
+              <Box ml={2}>
+                <Text fontWeight="bold">Streak</Text>
+                <Text fontSize="sm">0</Text>
+              </Box>
+            </Flex>
+          </MenuItem>
 
-                <MenuItem
-                  _hover={{ bg: "gray.300" }} // Change bg color on hover
-                  bg={colorMode === "light" ? "white" : "gray.700"} // Ensure default bg is white or dark based on color mode
-                >
-                  Log Out
-                </MenuItem>
-              </MenuList>
-            </Menu>
-          </HStack>
-        </Flex>
-      </MotionBox>
+          <MenuItem
+            _hover={{ bg: "gray.300" }} // Change bg color on hover
+            bg={colorMode === "light" ? "white" : "gray.700"} // Ensure default bg is white or dark based on color mode
+          >
+            Log Out
+          </MenuItem>
+        </MenuList>
+      </Menu>
+    </HStack>
+  </Flex>
+</MotionBox>
+
+{/* Soul Flex Section
+<Box
+  width="100%"
+  textAlign="center"
+  mt="125px" 
+  mb={2}
+  bg={colorMode === "light" ? "transparent.50" : "transparent.900"}
+  p={2}
+  borderRadius="md"
+  boxShadow="md"
+>
+  <Flex
+    direction="column"
+    alignItems="center"
+    justifyContent="center"
+    mb={2}
+  >
+    <MotionImage
+      src={soullogo}
+      alt="Soul Flex Logo"
+      boxSize="200px"
+      objectFit="cover"
+      borderRadius="md"
+      mb={2}
+      variants={imageVariants}
+      initial="hidden"
+      animate="visible"
+    />
+    <Heading size="lg" mb={2} color={colorMode === "light" ? "black.800" : "black.200"}>
+      Soul Flex
+    </Heading>
+    <Text
+      fontSize="lg"
+      color={colorMode === "light" ? "black.600" : "black.400"}
+    >
+      Empowering your mental strength with advanced techniques and tools.
+    </Text>
+  </Flex>
+</Box>
+
+
+<Box pt="80px">
+  {" "}
+
+
+  <MotionBox
+    width="100%"
+    textAlign="center"
+    my={8}
+    initial={{ y: 50, opacity: 0 }}
+    animate={{ y: 0, opacity: 1 }}
+    transition="0.5s ease-in-out"
+  >
+    <Heading
+      as="h2"
+      size="xl"
+      mb={4}
+      color={colorMode === "light" ? "gray.800" : "white"}
+      fontFamily="serif"
+    >
+      Elevate Your Mental Game
+    </Heading>
+    <Text
+      fontSize="lg"
+      color={colorMode === "light" ? "gray.600" : "gray.300"}
+    >
+      Discover the best tools and resources to boost your mental
+      performance in sports.
+    </Text>
+  </MotionBox>
+</Box> */}
+
          {/* Soul Flex Section */}
          <Box
         width="100%"
@@ -350,282 +425,283 @@ export const MainPage = () => {
           
         {/* Resources Section */}
         <Grid
-          templateColumns="repeat(auto-fit, minmax(300px, 1fr))"
-          gap={6}
-          width="100%"
-          my={8}
+  templateColumns={{ base: "1fr", sm: "repeat(2, 1fr)", md: "repeat(3, 1fr)" }}
+  gap={6}
+  width="100%"
+  my={8}
+>
+  {/* Articles Section */}
+  <GridItem>
+    <Box
+      bg={colorMode === "light" ? "white" : "gray.700"}
+      p={6}
+      borderRadius="lg"
+      boxShadow="lg"
+      as={motion.div}
+      initial={{ scale: 0.9, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition="0.5s ease-in-out"
+      height="100%" // Ensure uniform height
+    >
+      <Flex alignItems="center" mb={4}>
+        <IconButton
+          icon={<FaFileAlt />}
+          isRound
+          size="lg"
+          mr={4}
+          colorScheme="blackAlpha"
+        />
+        <Heading
+          as="h3"
+          size="md"
+          color={colorMode === "light" ? "gray.800" : "white"}
         >
-          
-          {/* Articles Section */}
-          <GridItem>
-            <Box
-              bg={colorMode === "light" ? "white" : "gray.700"}
-              p={6}
-              borderRadius="lg"
-              boxShadow="lg"
-              as={motion.div}
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition="0.5s ease-in-out"
-            >
-              
-              <Flex alignItems="center" mb={4}>
-                <IconButton
-                  icon={<FaFileAlt />}
-                  isRound
-                  size="lg"
-                  mr={4}
-                  colorScheme="blackAlpha"
-                />
-                
-                <Heading
-                  as="h3"
-                  size="md"
-                  color={colorMode === "light" ? "gray.800" : "white"}
-                >
-                  Articles
-                </Heading>
-              </Flex>
-              <Text color={colorMode === "light" ? "gray.600" : "gray.300"}>
-                
-                In-depth articles on topics like goal setting, stress
-                management, and more.
-              </Text>
-              <MotionButton
-                as={RouterLink}
-                to="/articles"
-                color={colorMode === "light" ? "black.500" : "teal.300"}
-                mt={4}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Explore Articles
-              </MotionButton>
-            </Box>
-          </GridItem>
-
-          {/* Videos Section */}
-          <GridItem>
-            <Box
-              bg={colorMode === "light" ? "white" : "gray.700"}
-              p={6}
-              borderRadius="lg"
-              boxShadow="lg"
-              as={motion.div}
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition="0.5s ease-in-out"
-            >
-              <Flex alignItems="center" mb={4}>
-                <IconButton
-                  icon={<FaPlay />}
-                  isRound
-                  size="lg"
-                  mr={4}
-                  colorScheme="blackAlpha"
-                />
-                <Heading
-                  as="h3"
-                  size="md"
-                  color={colorMode === "light" ? "gray.800" : "white"}
-                >
-                  Videos
-                </Heading>
-              </Flex>
-              <Text color={colorMode === "light" ? "gray.600" : "gray.300"}>
-                Watch videos with expert tips and techniques for improving your
-                mental game.
-              </Text>
-              <MotionButton
-                as={RouterLink}
-                to="/videos"
-                color={colorMode === "light" ? "black.500" : "teal.300"}
-                mt={4}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Watch Videos
-              </MotionButton>
-            </Box>
-          </GridItem>
-
-          {/* Exercises Section */}
-          <GridItem>
-            <Box
-              bg={colorMode === "light" ? "white" : "gray.700"}
-              p={6}
-              borderRadius="lg"
-              boxShadow="lg"
-              as={motion.div}
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition="0.5s ease-in-out"
-            >
-              <Flex alignItems="center" mb={4}>
-                <IconButton
-                  icon={<FaFire />}
-                  isRound
-                  size="lg"
-                  mr={4}
-                  colorScheme="blackAlpha"
-                />
-                <Heading
-                  as="h3"
-                  size="md"
-                  color={colorMode === "light" ? "gray.800" : "white"}
-                >
-                  Exercises
-                </Heading>
-              </Flex>
-              <Text color={colorMode === "light" ? "gray.600" : "gray.300"}>
-                Practice exercises designed to build mental strength and
-                resilience.
-              </Text>
-              <MotionButton
-                as={RouterLink}
-                to="/exercises"
-                color={colorMode === "light" ? "black.500" : "teal.300"}
-                mt={4}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Try Exercises
-              </MotionButton>
-            </Box>
-          </GridItem>
-          {/* Mindfulness Section */}
-<GridItem>
-  <Box
-    bg={colorMode === "light" ? "white" : "gray.700"}
-    p={6}
-    borderRadius="lg"
-    boxShadow="lg"
-    as={motion.div}
-    initial={{ scale: 0.9, opacity: 0 }}
-    animate={{ scale: 1, opacity: 1 }}
-    transition="0.5s ease-in-out"
-  >
-    <Flex alignItems="center" mb={4}>
-      <IconButton
-        icon={<FaBrain />}
-        isRound
-        size="lg"
-        mr={4}
-        colorScheme="blackAlpha"
-      />
-      <Heading
-        as="h3"
-        size="md"
-        color={colorMode === "light" ? "gray.800" : "white"}
+          Articles
+        </Heading>
+      </Flex>
+      <Text color={colorMode === "light" ? "gray.600" : "gray.300"}>
+        In-depth articles on topics like goal setting, stress management, and more.
+      </Text>
+      <MotionButton
+        as={RouterLink}
+        to="/articles"
+        color={colorMode === "light" ? "black.500" : "teal.300"}
+        mt={4}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
       >
-        Mindfulness
-      </Heading>
-    </Flex>
-    <Text color={colorMode === "light" ? "gray.600" : "gray.300"}>
-      Learn the art of mindfulness to stay present, reduce stress, and enhance focus during critical moments.
-    </Text>
-    <MotionButton
-      as={RouterLink}
-      to="/mindfulness"
-      color={colorMode === "light" ? "black.500" : "teal.300"}
-      mt={4}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-    >
-      Discover Mindfulness
-    </MotionButton>
-  </Box>
-</GridItem>
+        Explore Articles
+      </MotionButton>
+    </Box>
+  </GridItem>
 
-{/* Goal Setting Section */}
-<GridItem>
-  <Box
-    bg={colorMode === "light" ? "white" : "gray.700"}
-    p={6}
-    borderRadius="lg"
-    boxShadow="lg"
-    as={motion.div}
-    initial={{ scale: 0.9, opacity: 0 }}
-    animate={{ scale: 1, opacity: 1 }}
-    transition="0.5s ease-in-out"
-  >
-    <Flex alignItems="center" mb={4}>
-      <IconButton
-        icon={<FaBullseye />}
-        isRound
-        size="lg"
-        mr={4}
-        colorScheme="blackAlpha"
-      />
-      <Heading
-        as="h3"
-        size="md"
-        color={colorMode === "light" ? "gray.800" : "white"}
+  {/* Videos Section */}
+  <GridItem>
+    <Box
+      bg={colorMode === "light" ? "white" : "gray.700"}
+      p={6}
+      borderRadius="lg"
+      boxShadow="lg"
+      as={motion.div}
+      initial={{ scale: 0.9, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition="0.5s ease-in-out"
+      height="100%"
+    >
+      <Flex alignItems="center" mb={4}>
+        <IconButton
+          icon={<FaPlay />}
+          isRound
+          size="lg"
+          mr={4}
+          colorScheme="blackAlpha"
+        />
+        <Heading
+          as="h3"
+          size="md"
+          color={colorMode === "light" ? "gray.800" : "white"}
+        >
+          Videos
+        </Heading>
+      </Flex>
+      <Text color={colorMode === "light" ? "gray.600" : "gray.300"}>
+        Watch videos with expert tips and techniques for improving your mental game.
+      </Text>
+      <MotionButton
+        as={RouterLink}
+        to="/videos"
+        color={colorMode === "light" ? "black.500" : "teal.300"}
+        mt={4}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
       >
-        Goal Setting
-      </Heading>
-    </Flex>
-    <Text color={colorMode === "light" ? "gray.600" : "gray.300"}>
-      Explore strategies to set clear, achievable goals to guide your training and competition efforts.
-    </Text>
-    <MotionButton
-      as={RouterLink}
-      to="/goal-setting"
-      color={colorMode === "light" ? "black.500" : "teal.300"}
-      mt={4}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-    >
-      Set Your Goals
-    </MotionButton>
-  </Box>
-</GridItem>
+        Watch Videos
+      </MotionButton>
+    </Box>
+  </GridItem>
 
-{/* Stress Management Section */}
-<GridItem>
-  <Box
-    bg={colorMode === "light" ? "white" : "gray.700"}
-    p={6}
-    borderRadius="lg"
-    boxShadow="lg"
-    as={motion.div}
-    initial={{ scale: 0.9, opacity: 0 }}
-    animate={{ scale: 1, opacity: 1 }}
-    transition="0.5s ease-in-out"
-  >
-    <Flex alignItems="center" mb={4}>
-      <IconButton
-        icon={<FaHeart />}
-        isRound
-        size="lg"
-        mr={4}
-        colorScheme="blackAlpha"
-      />
-      <Heading
-        as="h3"
-        size="md"
-        color={colorMode === "light" ? "gray.800" : "white"}
+  {/* Exercises Section */}
+  <GridItem>
+    <Box
+      bg={colorMode === "light" ? "white" : "gray.700"}
+      p={6}
+      borderRadius="lg"
+      boxShadow="lg"
+      as={motion.div}
+      initial={{ scale: 0.9, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition="0.5s ease-in-out"
+      height="100%"
+    >
+      <Flex alignItems="center" mb={4}>
+        <IconButton
+          icon={<FaFire />}
+          isRound
+          size="lg"
+          mr={4}
+          colorScheme="blackAlpha"
+        />
+        <Heading
+          as="h3"
+          size="md"
+          color={colorMode === "light" ? "gray.800" : "white"}
+        >
+          Exercises
+        </Heading>
+      </Flex>
+      <Text color={colorMode === "light" ? "gray.600" : "gray.300"}>
+        Practice exercises designed to build mental strength and resilience.
+      </Text>
+      <MotionButton
+        as={RouterLink}
+        to="/exercises"
+        color={colorMode === "light" ? "black.500" : "teal.300"}
+        mt={4}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
       >
-        Stress Management
-      </Heading>
-    </Flex>
-    <Text color={colorMode === "light" ? "gray.600" : "gray.300"}>
-      Discover techniques to effectively manage stress and maintain composure in high-pressure situations.
-    </Text>
-    <MotionButton
-      as={RouterLink}
-      to="/stress-management"
-      color={colorMode === "light" ? "black.500" : "teal.300"}
-      mt={4}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-    >
-      Manage Stress
-    </MotionButton>
-  </Box>
-</GridItem>
+        Try Exercises
+      </MotionButton>
+    </Box>
+  </GridItem>
 
-        </Grid>
+  {/* Mindfulness Section */}
+  <GridItem>
+    <Box
+      bg={colorMode === "light" ? "white" : "gray.700"}
+      p={6}
+      borderRadius="lg"
+      boxShadow="lg"
+      as={motion.div}
+      initial={{ scale: 0.9, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition="0.5s ease-in-out"
+      height="100%"
+    >
+      <Flex alignItems="center" mb={4}>
+        <IconButton
+          icon={<FaBrain />}
+          isRound
+          size="lg"
+          mr={4}
+          colorScheme="blackAlpha"
+        />
+        <Heading
+          as="h3"
+          size="md"
+          color={colorMode === "light" ? "gray.800" : "white"}
+        >
+          Mindfulness
+        </Heading>
+      </Flex>
+      <Text color={colorMode === "light" ? "gray.600" : "gray.300"}>
+        Learn the art of mindfulness to stay present, reduce stress, and enhance focus during critical moments.
+      </Text>
+      <MotionButton
+        as={RouterLink}
+        to="/mindfulness"
+        color={colorMode === "light" ? "black.500" : "teal.300"}
+        mt={4}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        Discover Mindfulness
+      </MotionButton>
+    </Box>
+  </GridItem>
+
+  {/* Goal Setting Section */}
+  <GridItem>
+    <Box
+      bg={colorMode === "light" ? "white" : "gray.700"}
+      p={6}
+      borderRadius="lg"
+      boxShadow="lg"
+      as={motion.div}
+      initial={{ scale: 0.9, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition="0.5s ease-in-out"
+      height="100%"
+    >
+      <Flex alignItems="center" mb={4}>
+        <IconButton
+          icon={<FaBullseye />}
+          isRound
+          size="lg"
+          mr={4}
+          colorScheme="blackAlpha"
+        />
+        <Heading
+          as="h3"
+          size="md"
+          color={colorMode === "light" ? "gray.800" : "white"}
+        >
+          Goal Setting
+        </Heading>
+      </Flex>
+      <Text color={colorMode === "light" ? "gray.600" : "gray.300"}>
+        Explore strategies to set clear, achievable goals to guide your training and competition efforts.
+      </Text>
+      <MotionButton
+        as={RouterLink}
+        to="/goal-setting"
+        color={colorMode === "light" ? "black.500" : "teal.300"}
+        mt={4}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        Set Your Goals
+      </MotionButton>
+    </Box>
+  </GridItem>
+
+  {/* Stress Management Section */}
+  <GridItem>
+    <Box
+      bg={colorMode === "light" ? "white" : "gray.700"}
+      p={6}
+      borderRadius="lg"
+      boxShadow="lg"
+      as={motion.div}
+      initial={{ scale: 0.9, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition="0.5s ease-in-out"
+      height="100%"
+    >
+      <Flex alignItems="center" mb={4}>
+        <IconButton
+          icon={<FaHeart />}
+          isRound
+          size="lg"
+          mr={4}
+          colorScheme="blackAlpha"
+        />
+        <Heading
+          as="h3"
+          size="md"
+          color={colorMode === "light" ? "gray.800" : "white"}
+        >
+          Stress Management
+        </Heading>
+      </Flex>
+      <Text color={colorMode === "light" ? "gray.600" : "gray.300"}>
+        Discover techniques to effectively manage stress and maintain composure in high-pressure situations.
+      </Text>
+      <MotionButton
+        as={RouterLink}
+        to="/stress-management"
+        color={colorMode === "light" ? "black.500" : "teal.300"}
+        mt={4}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        Manage Stress
+      </MotionButton>
+    </Box>
+  </GridItem>
+</Grid>
+
+
         {/* About Us Section */}
         <MotionBox
           ref={aboutUsRef}
@@ -813,8 +889,10 @@ export const MainPage = () => {
                 <FaBrain size={40} color="teal.500" />
                 <Heading as="h4" size="md" mt={4} mb={2}>
                   Rithin CH
+                  <br />
+                  Harshith G
                 </Heading>
-                <Text>Frontend & Backend Developer</Text>
+                <Text>Backend Developers</Text>
               </Box>
             </GridItem>
 
@@ -832,8 +910,6 @@ export const MainPage = () => {
                   Siddhu  K
                   <br />
                   Kartheek B
-                  <br />
-                  Harshith G
                 </Heading>
                 <Text>Frontend Developers</Text>
               </Box>
