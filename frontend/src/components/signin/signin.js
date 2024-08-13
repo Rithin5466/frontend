@@ -13,14 +13,16 @@ import {
     Link,
     Image,
     Flex,
-    IconButton
+    IconButton,
+    useColorModeValue
 } from "@chakra-ui/react";
 import axios from 'axios';
 import { api } from "../actions/api";
 import { useState, useRef } from "react";
-import { Link as RouterLink, useNavigate } from 'react-router-dom'; // Import useNavigate instead of useHistory
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { motion } from "framer-motion";
 import { ArrowBackIcon } from "@chakra-ui/icons";
+import soulflexImage from '../img/soulflex.png';
 
 const MotionButton = motion(ChakraButton);
 
@@ -28,20 +30,26 @@ export const SignIn = () => {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const passwordRef = useRef(null);
-    const navigate = useNavigate(); // Use useNavigate instead of useHistory
+    const navigate = useNavigate();
+
+    // Move useColorModeValue calls inside the component
+    const bg = useColorModeValue("gray.300", "gray.700");
+    const cardBg = useColorModeValue("white", "gray.800");
+    const textColor = useColorModeValue("gray.800", "white");
+    const secondaryTextColor = useColorModeValue("gray.500", "gray.300");
+    const signUpLinkColor = useColorModeValue("black", "white"); // Color for "Sign up" link
 
     const Signin = async () => {
         await axios.post(api + "/signin", { name, password })
-        .then((res) => {
-            if (res.data.message) {
-                console.log(res?.data?.values);
-                alert(res.data.message);
-            } else {
-                alert(res.data.error);
-                window.location.href = "/signup";
-            }
-        })
-        .catch((e) => console.log(e));
+            .then((res) => {
+                if (res.data.message) {
+                    alert(res.data.message);
+                } else {
+                    alert(res.data.error);
+                    navigate("/signup");
+                }
+            })
+            .catch((e) => console.log(e));
     };
 
     const handleEmailKeyPress = (e) => {
@@ -51,18 +59,19 @@ export const SignIn = () => {
     };
 
     const handleBackClick = () => {
-        navigate("/landing"); 
+        navigate("/landing");
     };
 
     return (
         <Flex 
-            height="106vh" 
-            bg="gray.300" 
+            height="100vh" 
+            bg={bg} 
             alignItems="center" 
             justifyContent="center"
         >
             <Flex 
-                width="70%" 
+                width="67%" 
+                maxWidth="1200px"
                 boxShadow="xl" 
                 borderRadius="lg"
                 overflow="hidden"
@@ -70,7 +79,7 @@ export const SignIn = () => {
             >
                 {/* Left Side with Full Image */}
                 <Box
-                    width="40%" 
+                    width="60%"
                     bg="black" 
                     display="flex" 
                     justifyContent="center" 
@@ -82,11 +91,11 @@ export const SignIn = () => {
                     transition="0.5s ease-in-out"
                 >
                     <Image 
-                        src="" 
-                        alt="Left side image"
+                        src={soulflexImage} 
+                        alt="Soul Flex"
                         objectFit="cover"
-                        width="100%"
-                        height="100%"
+                        width="70%"
+                        height="45%"
                     />
                 </Box>
 
@@ -102,7 +111,7 @@ export const SignIn = () => {
                     animate={{ x: 0, opacity: 1 }}
                     transition="0.5s ease-in-out"
                 >
-                    <Card boxShadow="md" borderRadius="lg" bg="white">
+                    <Card boxShadow="md" borderRadius="lg" bg={cardBg}>
                         <CardBody>
                             <VStack spacing={4} align="stretch">
                                 {/* Back Button */}
@@ -112,14 +121,14 @@ export const SignIn = () => {
                                     variant="outline" 
                                     colorScheme="gray"
                                     alignSelf="flex-start"
-                                    onClick={handleBackClick} // Use handleBackClick for navigation
+                                    onClick={handleBackClick}
                                 />
 
                                 <Heading 
                                     as="h2" 
                                     size="lg" 
                                     textAlign="center" 
-                                    color="gray.800"
+                                    color={textColor}
                                     fontFamily="serif"
                                     mb={4}
                                     initial={{ scale: 0.8, opacity: 0 }}
@@ -131,7 +140,7 @@ export const SignIn = () => {
                                 <Text 
                                     fontSize="sm" 
                                     textAlign="center" 
-                                    color="gray.500"
+                                    color={secondaryTextColor}
                                     mb={4}
                                 >
                                     The faster you fill up, the faster you get a chance to change your life!
@@ -164,10 +173,11 @@ export const SignIn = () => {
                                     justifyContent="space-between" 
                                     width="100%"
                                     fontSize="sm" 
-                                    color="gray.600"
+                                    color={secondaryTextColor}
+                                    mb={4}
                                 >
                                     <Checkbox colorScheme="gray">Remember me</Checkbox>
-                                    <Link as={RouterLink} to="/forgot-password" color="gray.600">
+                                    <Link as={RouterLink} to="/forgot-password" color={secondaryTextColor}>
                                         Forgot Password
                                     </Link>
                                 </Box>
@@ -185,7 +195,7 @@ export const SignIn = () => {
                                     Sign In
                                 </MotionButton>
 
-                                <MotionButton 
+                                {/* <MotionButton 
                                     variant="outline" 
                                     colorScheme="gray" 
                                     size="md" 
@@ -196,14 +206,14 @@ export const SignIn = () => {
                                     whileTap={{ scale: 0.95 }}
                                 >
                                     Sign In with Google
-                                </MotionButton>
+                                </MotionButton> */}
 
-                                <Text textAlign="center" color="gray.600" fontSize="sm" mt={2}>
+                                <Text textAlign="center" color={secondaryTextColor} fontSize="sm" mt={2}>
                                     Don't have an account?{" "}
                                     <Link 
                                         as={RouterLink} 
                                         to="/signup" 
-                                        color="black" 
+                                        color={signUpLinkColor} // Apply dynamic color here
                                         fontWeight="bold"
                                     >
                                         Sign up

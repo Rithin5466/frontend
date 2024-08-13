@@ -6,6 +6,7 @@ import { ForgotPassword } from './components/updatePassword/forgetpass';
 import DisplayData from './components/dispalydata/data';
 import  { MainPage } from './components/landing pages/navbar'; // Ensure this path is correct
 import LandingPage from './components/landing pages/landingpage';
+import Articles from './components/articles/article';
 
 
 
@@ -18,9 +19,12 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/data" element={<DisplayData/>} />
-        {/* <Route path="/landingpage1" element={<Navbar/>} /> */}
-        <Route path="/mainpage" element={<MainPage/>} />
+        <Route path="/article" element={<Articles/>} />
+
         <Route path="/landing" element={<LandingPage/>} />
+        <Route path="/mainpage" element={<MainPage />} />
+
+        
       </Routes>
     </BrowserRouter>
   );
