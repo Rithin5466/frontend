@@ -929,7 +929,7 @@ export const MainPage = () => {
                   <br />
                   Lakshitha K
                 </Heading>
-                <Text>Content Curators</Text>
+                <Text>Content Curators & Frontend Developers</Text>
               </Box>
             </GridItem>
           </Grid>
