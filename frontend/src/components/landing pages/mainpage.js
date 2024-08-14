@@ -890,9 +890,8 @@ export const MainPage = () => {
                 <Heading as="h4" size="md" mt={4} mb={2}>
                   Rithin CH
                   <br />
-                  Harshith G
                 </Heading>
-                <Text>Backend Developers</Text>
+                <Text>Frontend & <br />Backend Developer</Text>
               </Box>
             </GridItem>
 
@@ -907,9 +906,9 @@ export const MainPage = () => {
               >
                 <FaBullseye size={40} color="teal.500" />
                 <Heading as="h4" size="md" mt={4} mb={2}>
-                  Siddhu  K
+                  Siddhu  K , Kartheek B &
                   <br />
-                  Kartheek B
+                 Harshith G
                 </Heading>
                 <Text>Frontend Developers</Text>
               </Box>
@@ -926,7 +925,7 @@ export const MainPage = () => {
               >
                 <FaHeart size={40} color="teal.500" />
                 <Heading as="h4" size="md" mt={4} mb={2}>
-                  Tharunee G
+                  Tharunee G &
                   <br />
                   Lakshitha K
                 </Heading>

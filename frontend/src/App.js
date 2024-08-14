@@ -6,7 +6,7 @@ import { ForgotPassword } from './components/updatePassword/forgetpass';
 import DisplayData from './components/dispalydata/data';
 import { MainPage } from './components/landing pages/mainpage';
 import LandingPage from './components/landing pages/landingpage';
-import Articles from './components/articles/article';
+import Articles from './components/articles/articles';
 import ExercisePage from './components/exercises/exercises';
 import MenExercisePage from './components/exercises/men';
 import { WomenExercisePage } from './components/exercises/women';
@@ -22,7 +22,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/data" element={<DisplayData />} />
-        <Route path="/article" element={<Articles />} />
+        <Route path="/articles" element={<Articles />} />
         <Route path="/mainpage" element={<MainPage />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/exercises" element={<ExercisePage/>} />
