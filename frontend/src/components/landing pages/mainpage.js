@@ -644,7 +644,7 @@ export const MainPage = () => {
       </Text>
       <MotionButton
         as={RouterLink}
-        to="/goalhttps://i.pinimg.com/originals/2c/41/61/2c4161b4862d80625c204ffceeb1469f.gif"
+        to="/goal"
         color={colorMode === "light" ? "black.500" : "teal.300"}
         mt={4}
         whileHover={{ scale: 1.05 }}
