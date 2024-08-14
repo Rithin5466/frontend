@@ -591,7 +591,8 @@ export const MainPage = () => {
           size="md"
           color={colorMode === "light" ? "gray.800" : "white"}
         >
-          Mindfulness
+          Tips for Mindfulness & < br/>
+          Stress Management
         </Heading>
       </Flex>
       <Text color={colorMode === "light" ? "gray.600" : "gray.300"}>
@@ -605,7 +606,7 @@ export const MainPage = () => {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
-        Discover Mindfulness
+        Discover It
       </MotionButton>
     </Box>
   </GridItem>
@@ -636,7 +637,7 @@ export const MainPage = () => {
           size="md"
           color={colorMode === "light" ? "gray.800" : "white"}
         >
-          Goal Setting
+          Goal Setting Startigies
         </Heading>
       </Flex>
       <Text color={colorMode === "light" ? "gray.600" : "gray.300"}>
