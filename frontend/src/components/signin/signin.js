@@ -1,3 +1,4 @@
+
 import {
     Card,
     CardBody,
@@ -210,7 +211,7 @@ export const SignIn = () => {
                                     Sign In
                                 </MotionButton>
 
-                                <MotionButton 
+                                {/* <MotionButton 
                                     variant="outline" 
                                     colorScheme="gray" 
                                     size="md" 
@@ -221,14 +222,14 @@ export const SignIn = () => {
                                     whileTap={{ scale: 0.95 }}
                                 >
                                     Sign In with Google
-                                </MotionButton>
+                                </MotionButton> */}
 
                                 <Text textAlign="center" color={secondaryTextColor} fontSize="sm" mt={2}>
                                     Don't have an account?{" "}
                                     <Link 
                                         as={RouterLink} 
                                         to="/signup" 
-                                        color={signUpLinkColor} // Apply dynamic color here
+                                        color={signUpLinkColor} 
                                         fontWeight="bold"
                                     >
                                         Sign up

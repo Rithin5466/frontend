@@ -644,7 +644,7 @@ export const MainPage = () => {
       </Text>
       <MotionButton
         as={RouterLink}
-        to="/goal-setting"
+        to="/goalhttps://i.pinimg.com/originals/2c/41/61/2c4161b4862d80625c204ffceeb1469f.gif"
         color={colorMode === "light" ? "black.500" : "teal.300"}
         mt={4}
         whileHover={{ scale: 1.05 }}
@@ -888,8 +888,9 @@ export const MainPage = () => {
               >
                 <FaBrain size={40} color="teal.500" />
                 <Heading as="h4" size="md" mt={4} mb={2}>
-                  Rithin CH
-                  <br />
+                  Rithin CH &
+                  
+                  Harshith G
                 </Heading>
                 <Text>Frontend & <br />Backend Developer</Text>
               </Box>
@@ -906,9 +907,9 @@ export const MainPage = () => {
               >
                 <FaBullseye size={40} color="teal.500" />
                 <Heading as="h4" size="md" mt={4} mb={2}>
-                  Siddhu  K , Kartheek B &
+                  Siddhu  K & Kartheek B 
                   <br />
-                 Harshith G
+                
                 </Heading>
                 <Text>Frontend Developers</Text>
               </Box>
