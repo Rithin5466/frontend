@@ -37,7 +37,7 @@ export const ForgotPassword = () => {
             const response = await axios.post(`${api}/send-otp`, { email });
 
             if (response.status === 200) {
-                alert("OTP sent successfully to your registered mobile number.");
+                alert("OTP sent successfully to your registered Email.");
             } else {
                 alert("Failed to send OTP. Please try again.");
             }
@@ -47,12 +47,22 @@ export const ForgotPassword = () => {
         }
     };
 
-    const handleVerifyOtp = () => {
-        if (otp === "1234") {
-            setOtpVerified(true);
-            alert("OTP Verified!");
-        } else {
-            alert("Invalid OTP. Please try again.");
+    const handleVerifyOtp = async () => {
+        try {
+            const response = await axios.post('http://localhost:9000/verify-otp', {
+                email, // the email address of the user
+                otp,   // the OTP entered by the user
+            });
+    
+            if (response.data.success) {
+                setOtpVerified(true);
+                alert("OTP Verified!");
+            } else {
+                alert(response.data.message);
+            }
+        } catch (error) {
+            console.error("Error verifying OTP:", error);
+            alert("Failed to verify OTP. Please try again.");
         }
     };
 
