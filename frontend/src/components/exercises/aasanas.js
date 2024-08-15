@@ -261,7 +261,7 @@ const Aasanas = () => {
         justifyContent: "center",
         alignItems: "center",
         minHeight: "100vh",
-        background: "transparent",
+        background: "transparent-light",
       }}
     >
       <div
@@ -278,8 +278,8 @@ const Aasanas = () => {
         style={{
           width: "100%",
           padding: "20px",
-          backgroundColor: "transparent-black",
-          color: "black",
+          backgroundColor: "black",
+          color: "white",
           textAlign: "center",
           borderRadius: " 20px 20px",
           boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
