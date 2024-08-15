@@ -15,8 +15,8 @@ import {
     useColorMode
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { FaLock, FaEnvelope, FaMobileAlt, FaKey, FaArrowLeft } from "react-icons/fa";
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { FaLock, FaEnvelope, FaMobileAlt, FaArrowLeft } from "react-icons/fa";
+import { Link as RouterLink } from 'react-router-dom';
 import axios from "axios";
 import { motion } from "framer-motion";
 
@@ -30,14 +30,13 @@ export const ForgotPassword = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [otpVerified, setOtpVerified] = useState(false);
     const { colorMode } = useColorMode(); // Get the current color mode
-    const navigate = useNavigate(); // Initialize useNavigate
 
     const handleSendOtp = async () => {
         try {
             const response = await axios.post(`${api}/send-otp`, { email });
 
             if (response.status === 200) {
-                alert("OTP sent successfully to your registered Email.");
+                alert("OTP sent successfully to your registered email.");
             } else {
                 alert("Failed to send OTP. Please try again.");
             }
@@ -49,20 +48,17 @@ export const ForgotPassword = () => {
 
     const handleVerifyOtp = async () => {
         try {
-            const response = await axios.post('http://localhost:9000/verify-otp', {
-                email, // the email address of the user
-                otp,   // the OTP entered by the user
-            });
-    
-            if (response.data.success) {
+            const response = await axios.post(`${api}/verify-otp`, { email, otp });
+            
+            if (response.status === 200) {
                 setOtpVerified(true);
                 alert("OTP Verified!");
             } else {
-                alert(response.data.message);
+                alert("Invalid OTP. Please try again.");
             }
         } catch (error) {
             console.error("Error verifying OTP:", error);
-            alert("Failed to verify OTP. Please try again.");
+            alert("An error occurred while verifying the OTP. Please try again later.");
         }
     };
 
@@ -77,7 +73,6 @@ export const ForgotPassword = () => {
 
             if (response.status === 200) {
                 alert(response.data.message || "Password updated successfully");
-                navigate("/signin"); // Redirect to the sign-in page
             } else {
                 alert("Failed to reset password. Please try again.");
             }
@@ -162,19 +157,18 @@ export const ForgotPassword = () => {
                             </InputGroup>
                         </FormControl>
                         <Box mt={7}>
-                            <Button
-                                bg={colorMode === "dark" ? "gray.600" : "gray.700"}
-                                color={colorMode === "dark" ? "whiteAlpha.900" : "white"}
-                                _hover={{ bg: colorMode === "dark" ? "gray.500" : "black.600" }}
-                                _active={{ bg: colorMode === "dark" ? "gray.400" : "black.800" }}
-                                colorScheme="blackAlpha"
-                                onClick={handleSendOtp}
-                                isDisabled={!email || !mobile}
-                                borderRadius="md"
-                            >
-                                Send OTP
-                            </Button>
-                        </Box>
+                        <Button
+                            bg={colorMode === "dark" ? "gray.600" : "gray.700"}
+                            color={colorMode === "dark" ? "whiteAlpha.900" : "white"}
+                            _hover={{ bg: colorMode === "dark" ? "gray.500" : "black.600" }}
+                            _active={{ bg: colorMode === "dark" ? "gray.400" : "black.800" }}
+                            colorScheme="blackAlpha"
+                            onClick={handleSendOtp}
+                            isDisabled={!email || !mobile}
+                            borderRadius="md"
+                        >
+                            Send OTP
+                        </Button></Box>
                     </Flex>
 
                     <Flex direction="row" align="center" spacing={4}>
@@ -195,71 +189,72 @@ export const ForgotPassword = () => {
                             </InputGroup>
                         </FormControl>
                         <Box mt={7}>
-                            <Button
-                                bg={colorMode === "dark" ? "gray.600" : "gray.700"}
-                                color={colorMode === "dark" ? "whiteAlpha.900" : "white"}
-                                _hover={{ bg: colorMode === "dark" ? "gray.500" : "black.600" }}
-                                _active={{ bg: colorMode === "dark" ? "gray.400" : "black.800" }}
-                                colorScheme="blackAlpha"
-                                onClick={handleVerifyOtp}
-                                isDisabled={!otp}
-                                borderRadius="md"
-                            >
-                                Verify OTP
-                            </Button>
-                        </Box>
+                        <Button
+                            bg={colorMode === "dark" ? "gray.600" : "gray.700"}
+                            color={colorMode === "dark" ? "whiteAlpha.900" : "white"}
+                            _hover={{ bg: colorMode === "dark" ? "gray.500" : "black.600" }}
+                            _active={{ bg: colorMode === "dark" ? "gray.400" : "black.800" }}
+                            colorScheme="blackAlpha"
+                            onClick={handleVerifyOtp}
+                            isDisabled={!otp}
+                            borderRadius="md"
+                        >
+                            Verify OTP
+                        </Button></Box>
                     </Flex>
 
-                    <Collapse in={otpVerified}>
-                        <VStack spacing={4} mt={6}>
-                            <FormControl id="new-password">
-                                <FormLabel>New Password</FormLabel>
-                                <InputGroup>
-                                    <InputRightElement children={<FaKey color={colorMode === "dark" ? "gray.400" : "gray.500"} />} />
-                                    <Input
-                                        type="password"
-                                        placeholder="Enter new password"
-                                        value={newPassword}
-                                        onChange={(e) => setNewPassword(e.target.value)}
-                                        focusBorderColor={colorMode === "dark" ? "whiteAlpha.900" : "black"}
-                                        borderColor={colorMode === "dark" ? "gray.600" : "gray.300"}
-                                        borderRadius="md"
-                                        bg={colorMode === "dark" ? "gray.600" : "white"}
-                                    />
-                                </InputGroup>
-                            </FormControl>
+                    {otpVerified && (
+                        <Collapse in={otpVerified}>
+                            <VStack spacing={4} mt={4}>
+                                <FormControl id="new-password">
+                                    <FormLabel>New Password</FormLabel>
+                                    <InputGroup>
+                                        <InputRightElement children={<FaLock color={colorMode === "dark" ? "gray.400" : "gray.500"} />} />
+                                        <Input
+                                            type="password"
+                                            placeholder="Enter new password"
+                                            value={newPassword}
+                                            onChange={(e) => setNewPassword(e.target.value)}
+                                            focusBorderColor={colorMode === "dark" ? "whiteAlpha.900" : "black"}
+                                            borderColor={colorMode === "dark" ? "gray.600" : "gray.300"}
+                                            borderRadius="md"
+                                            bg={colorMode === "dark" ? "gray.600" : "white"}
+                                        />
+                                    </InputGroup>
+                                </FormControl>
 
-                            <FormControl id="confirm-new-password">
-                                <FormLabel>Confirm New Password</FormLabel>
-                                <InputGroup>
-                                    <InputRightElement children={<FaKey color={colorMode === "dark" ? "gray.400" : "gray.500"} />} />
-                                    <Input
-                                        type="password"
-                                        placeholder="Confirm new password"
-                                        value={confirmPassword}
-                                        onChange={(e) => setConfirmPassword(e.target.value)}
-                                        focusBorderColor={colorMode === "dark" ? "whiteAlpha.900" : "black"}
-                                        borderColor={colorMode === "dark" ? "gray.600" : "gray.300"}
-                                        borderRadius="md"
-                                        bg={colorMode === "dark" ? "gray.600" : "white"}
-                                    />
-                                </InputGroup>
-                            </FormControl>
+                                <FormControl id="confirm-password">
+                                    <FormLabel>Confirm New Password</FormLabel>
+                                    <InputGroup>
+                                        <InputRightElement children={<FaLock color={colorMode === "dark" ? "gray.400" : "gray.500"} />} />
+                                        <Input
+                                            type="password"
+                                            placeholder="Confirm new password"
+                                            value={confirmPassword}
+                                            onChange={(e) => setConfirmPassword(e.target.value)}
+                                            focusBorderColor={colorMode === "dark" ? "whiteAlpha.900" : "black"}
+                                            borderColor={colorMode === "dark" ? "gray.600" : "gray.300"}
+                                            borderRadius="md"
+                                            bg={colorMode === "dark" ? "gray.600" : "white"}
+                                        />
+                                    </InputGroup>
+                                </FormControl>
 
-                            <Button
-                                bg={colorMode === "dark" ? "gray.600" : "gray.700"}
-                                color={colorMode === "dark" ? "whiteAlpha.900" : "white"}
-                                _hover={{ bg: colorMode === "dark" ? "gray.500" : "black.600" }}
-                                _active={{ bg: colorMode === "dark" ? "gray.400" : "black.800" }}
-                                colorScheme="blackAlpha"
-                                onClick={handleResetPassword}
-                                isDisabled={!newPassword || !confirmPassword}
-                                borderRadius="md"
-                            >
-                                Reset Password
-                            </Button>
-                        </VStack>
-                    </Collapse>
+                                <Button
+                                    bg={colorMode === "dark" ? "gray.600" : "gray.700"}
+                                    color={colorMode === "dark" ? "whiteAlpha.900" : "white"}
+                                    _hover={{ bg: colorMode === "dark" ? "gray.500" : "black.600" }}
+                                    _active={{ bg: colorMode === "dark" ? "gray.400" : "black.800" }}
+                                    colorScheme="blackAlpha"
+                                    onClick={handleResetPassword}
+                                    isDisabled={!newPassword || !confirmPassword}
+                                    borderRadius="md"
+                                >
+                                    Reset Password
+                                </Button>
+                            </VStack>
+                        </Collapse>
+                    )}
                 </VStack>
             </Box>
         </Box>
