@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export const WomenExercisePage = () => {
+export const Womenadv = () => {
   const pageStyles = {
     backgroundColor: 'black', // Light grey background
     minHeight: '100vh',
@@ -90,4 +90,4 @@ const exercises = [
   );
 };
 
-// export default WomenExercisePage;
+// export default Womenadv;

@@ -251,6 +251,7 @@ export const MainPage = () => {
             bg={colorMode === "light" ? "white" : "gray.700"} // Ensure default bg is white or dark based on color mode
           >
             Log Out
+            
           </MenuItem>
         </MenuList>
       </Menu>
@@ -509,9 +510,9 @@ export const MainPage = () => {
       </Text>
       <MotionButton
         as={RouterLink}
-        to="/videos"
+        to="/video"
         color={colorMode === "light" ? "black.500" : "teal.300"}
-        mt={4}
+        mt={4 }
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
@@ -546,7 +547,7 @@ export const MainPage = () => {
           size="md"
           color={colorMode === "light" ? "gray.800" : "white"}
         >
-          Exercises
+          Yoga & Exercises
         </Heading>
       </Flex>
       <Text color={colorMode === "light" ? "gray.600" : "gray.300"}>
@@ -591,8 +592,7 @@ export const MainPage = () => {
           size="md"
           color={colorMode === "light" ? "gray.800" : "white"}
         >
-          Tips for Mindfulness & < br/>
-          Stress Management
+        Mindfulness & Stress Management
         </Heading>
       </Flex>
       <Text color={colorMode === "light" ? "gray.600" : "gray.300"}>
@@ -600,13 +600,13 @@ export const MainPage = () => {
       </Text>
       <MotionButton
         as={RouterLink}
-        to="/mindfulness"
+        to="/mind"
         color={colorMode === "light" ? "black.500" : "teal.300"}
         mt={4}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
-        Discover It
+        Discover 
       </MotionButton>
     </Box>
   </GridItem>
@@ -637,7 +637,7 @@ export const MainPage = () => {
           size="md"
           color={colorMode === "light" ? "gray.800" : "white"}
         >
-          Goal Setting Startigies
+          Goal Setting Strategies
         </Heading>
       </Flex>
       <Text color={colorMode === "light" ? "gray.600" : "gray.300"}>
@@ -682,7 +682,7 @@ export const MainPage = () => {
           size="md"
           color={colorMode === "light" ? "gray.800" : "white"}
         >
-          Stress Management
+          Peaceful Music
         </Heading>
       </Flex>
       <Text color={colorMode === "light" ? "gray.600" : "gray.300"}>
@@ -690,13 +690,13 @@ export const MainPage = () => {
       </Text>
       <MotionButton
         as={RouterLink}
-        to="/stress-management"
+        to="/music"
         color={colorMode === "light" ? "black.500" : "teal.300"}
         mt={4}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
-        Manage Stress
+        Get init
       </MotionButton>
     </Box>
   </GridItem>
@@ -889,11 +889,12 @@ export const MainPage = () => {
               >
                 <FaBrain size={40} color="teal.500" />
                 <Heading as="h4" size="md" mt={4} mb={2}>
-                  Rithin CH &
-                  
+                  Rithin CH
+                  <br></br>
                   Harshith G
+                  <br />
                 </Heading>
-                <Text>Frontend & <br />Backend Developer</Text>
+                <Text>Frontend Developer</Text>
               </Box>
             </GridItem>
 
@@ -908,9 +909,9 @@ export const MainPage = () => {
               >
                 <FaBullseye size={40} color="teal.500" />
                 <Heading as="h4" size="md" mt={4} mb={2}>
-                  Siddhu  K & Kartheek B 
+                  Siddhu  K
                   <br />
-                
+                  Kartheek B
                 </Heading>
                 <Text>Frontend Developers</Text>
               </Box>
@@ -927,11 +928,11 @@ export const MainPage = () => {
               >
                 <FaHeart size={40} color="teal.500" />
                 <Heading as="h4" size="md" mt={4} mb={2}>
-                  Tharunee G &
+                  Tharunee G 
                   <br />
                   Lakshitha K
                 </Heading>
-                <Text>Content Curators & Frontend Developers</Text>
+                <Text>Content Curators</Text>
               </Box>
             </GridItem>
           </Grid>

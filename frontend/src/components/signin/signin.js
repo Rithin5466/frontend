@@ -44,12 +44,18 @@ export const SignIn = () => {
             console.log("Sending sign-in request with", { email: name, password });
             const res = await axios.post(api + "/signin", { email: name, password });
             console.log("Response from server:", res.data); // Inspect the response
-        
-            if (res.data.message === "Login successful") {
-                alert(res.data.message); // "Login successful"
-                navigate("/mainpage");   // Redirect to MainPage
+    
+            if (res.data.message.startsWith("Welcome")) {
+                alert(res.data.message); // e.g., "Welcome User" or "Welcome Admin"
+                if (res.data.userType === 'Admin') {
+                    // Add AdminDashboard link to the navbar
+                    // You might need to manage user state or context to reflect this change
+                    navigate("/admin"); // Redirect to AdminDashboard
+                } else {
+                    navigate("/mainpage");   // Redirect to MainPage for regular users
+                }
             } else {
-                console.log(res.data); //
+                console.log(res.data);
                 alert("An unexpected error occurred.");
             }
         } catch (error) {
@@ -61,6 +67,8 @@ export const SignIn = () => {
             }
         }
     };
+    
+    
     
     
     

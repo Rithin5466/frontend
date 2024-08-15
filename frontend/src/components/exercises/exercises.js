@@ -6,14 +6,25 @@ import { useNavigate } from 'react-router-dom';
 const MotionButton = motion(Button);
 
 const ExercisePage = () => {
-    const navigate = useNavigate();
-    const handleMenSectionClick = () => {
-      navigate('/menexercises');
-    };
+  const navigate = useNavigate();
+
+  const handleMenSectionClick = () => {
+    navigate('/query');
+  };
 
   const handleWomenSectionClick = () => {
-    navigate('/womenexercises');
+    navigate('/querywomen');
   };
+
+  const handleYogaSectionClick = () => {
+    navigate('/aasanas');
+  };
+
+  const handleSuryaSectionClick = () => {
+    navigate('/suryanamaskaram');
+  };
+
+
   const pageStyles = {
     background: 'gray.900',
     minHeight: '106vh',
@@ -59,7 +70,7 @@ const ExercisePage = () => {
   const buttonStyles = {
     backgroundColor: 'black',
     color: 'white',
-    width: '150px',
+    width: '200px',
     margin: '10px',
     _hover: {
       backgroundColor: '#2B6CB0',
@@ -82,7 +93,7 @@ const ExercisePage = () => {
     'Enhances flexibility and mobility',
     'Boosts mental health and reduces stress',
     'Promotes better posture and balance',
-    'Enhances brain function and memory'
+    'Enhances brain function and memory',
   ];
 
   return (
@@ -113,22 +124,38 @@ const ExercisePage = () => {
           </Text>
 
           <VStack spacing={4}>
-      <MotionButton style={buttonStyles} 
-      whileHover={{ scale: 1.05 }}
-      onClick={handleMenSectionClick}
-      >
-        
-        Men Section
-      </MotionButton>
-      <MotionButton
-        style={buttonStyles}
-        whileHover={{ scale: 1.05 }}
-        onClick={handleWomenSectionClick}
-      >
-        Women Section
-      </MotionButton>
-    </VStack>
+            <MotionButton 
+              style={buttonStyles} 
+              whileHover={{ scale: 1.05 }}
+              onClick={handleMenSectionClick}
+            >
+              Men Section
+            </MotionButton>
 
+            <MotionButton
+              style={buttonStyles}
+              whileHover={{ scale: 1.05 }}
+              onClick={handleWomenSectionClick}
+            >
+              Women Section
+            </MotionButton>
+
+            <MotionButton
+              style={buttonStyles}
+              whileHover={{ scale: 1.05 }}
+              onClick={handleSuryaSectionClick}
+            >
+              Surya Namaskara
+            </MotionButton>
+
+            <MotionButton
+              style={buttonStyles}
+              whileHover={{ scale: 1.05 }}
+              onClick={handleYogaSectionClick}
+            >
+              Remedies of Yoga
+            </MotionButton>
+          </VStack>
 
           <footer style={footerStyles}>
             <Text fontSize="lg" fontWeight="bold" mb={2}>Benefits of Exercises</Text>
@@ -151,8 +178,7 @@ const ExercisePage = () => {
             alt="Women exercising"
             width={600}
             height={150}
-        
-            />
+          />
         </Box>
       </Flex>
     </Flex>

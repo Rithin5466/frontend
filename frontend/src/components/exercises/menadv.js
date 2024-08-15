@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { IconButton } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 
-const MenExercisePage = () => {
+const Menadv = () => {
   const pageStyles = {
     background: "black",
     minHeight: "100vh",
@@ -64,10 +64,10 @@ const MenExercisePage = () => {
 
   const exercises = [
     {
-      name: "Sit ups",
+      name: "Squats",
       image:
         "https://i.pinimg.com/originals/78/bc/2e/78bc2ed0dc65bc4c4670f513b5046ff5.gif",
-      reps: "00:20",
+      reps: "x15",
     },
     {
       name: "Pushup & Rotation",
@@ -103,79 +103,79 @@ const MenExercisePage = () => {
       name: "Plank",
       image:
         "https://i.pinimg.com/originals/78/f3/1b/78f31b6a5bb1e1cd63a08e85e295dfb4.gif",
-      reps: "00:20",
+      reps: "00:45",
     },
     {
       name: "V ups",
       image:
         "https://i.pinimg.com/originals/bd/a3/0f/bda30fe64aacc1db33ac9385071d48e7.gif",
-      reps: "00:16",
+      reps: "x16",
     },
     {
       name: "Bands triceps",
       image:
         "https://i.pinimg.com/originals/8b/8e/fc/8b8efcf0c5600bb608669685723423db.gif",
-      reps: "x8",
+      reps: "x16",
     },
     {
       name: "Golf weight traning",
       image:
         "https://i.pinimg.com/originals/8e/46/43/8e464355eceddc2bb00f75c43368ad27.gif",
-      reps: "x8",
+      reps: "x12",
     },
     {
       name: "Heel touch",
       image:
         "https://i.pinimg.com/originals/5d/fa/da/5dfada3ff7c54ac8264eabb1a3842b61.gif",
-      reps: "x10",
+      reps: "x20",
     },
     {
       name: "Leg lunges",
       image:
         "https://i.pinimg.com/originals/ec/52/74/ec5274f13f96683f61af3af2e95a4798.gif",
-      reps: "00:30",
+      reps: "x16",
     },
     {
       name: "Knee Push-Ups",
       image:
         "https://i.pinimg.com/originals/4b/da/10/4bda1013b08829bae367c5c9f4eb6408.gif",
-      reps: "x10",
+      reps: "x20",
     },
     {
       name: "Butt Bridge",
       image:
         "https://i.pinimg.com/originals/e2/c3/00/e2c30049ce1ea410ff188472838ed0a1.gif",
-      reps: "x8",
+      reps: "x16",
     },
     {
       name: "Mountain climbing",
       image:
         "https://i.pinimg.com/originals/9f/af/63/9faf631d61e4613834a6de66c8e1cafb.gif",
-      reps: "x12",
+      reps: "x20",
     },
     {
       name: "Dumbbell floor press",
       image:
         "https://i.pinimg.com/originals/ad/40/54/ad4054c9ad7b08da0d324c67281252a7.gif",
-      reps: "00:30",
+      reps: "x16",
     },
     {
       name: "Dumbbell squats",
       image:
         "https://i.pinimg.com/originals/b2/87/91/b28791fda55992ff8fd6fe4846f0f437.gif",
-      reps: "00:30",
+      reps: "x14",
     },
     {
       name: "Tuck crunches",
       image:
         "https://i.pinimg.com/originals/77/40/e3/7740e3fac39ca80df8e0da4c27917ecc.gif",
-      reps: "00:30",
+      reps: "x16",
     },
     {
       name: "Resistance band ",
       image:
         "https://i.pinimg.com/originals/44/42/28/4442282b789718c5c40befaebc64b7bb.gif",
-      reps: "x10",
+      reps: "x14",
     },
   ];
 
@@ -198,7 +198,7 @@ const MenExercisePage = () => {
           onClick={handleBackClick}
         />
         
-        <header style={headerStyles}>Men's Exercise Routine</header>
+        <header style={headerStyles}>Advanced's Workout</header>
       </div>
       <div style={exerciseListStyles}>
         {exercises.map((exercise, index) => (
@@ -223,4 +223,4 @@ const MenExercisePage = () => {
   );
 };
 
-export default MenExercisePage;
+export default Menadv;
