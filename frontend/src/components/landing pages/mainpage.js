@@ -894,7 +894,7 @@ export const MainPage = () => {
                   Harshith G
                   <br />
                 </Heading>
-                <Text>Frontend Developer</Text>
+                <Text>Backend Developer & Frontend Developer</Text>
               </Box>
             </GridItem>
 
@@ -932,7 +932,7 @@ export const MainPage = () => {
                   <br />
                   Lakshitha K
                 </Heading>
-                <Text>Content Curators</Text>
+                <Text>Content Curators & Frontend Developers</Text>
               </Box>
             </GridItem>
           </Grid>
